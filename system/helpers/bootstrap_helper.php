@@ -410,7 +410,7 @@ function bootstrap_alert_before($position = NULL, $uid = NULL) {
       break;
     case 'center':
     default :
-      $output .= '<div class="span3"></div><div class="span6">';
+      $output .= '</div><div class="span6" style="margin-left:auto;margin-right:auto;display:block;float:none">';
       break;
   }
   return $output;

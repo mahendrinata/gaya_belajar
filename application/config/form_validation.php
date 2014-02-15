@@ -1,7 +1,7 @@
 <?php
 
 $config = array(
-    'users/login' => array(
+    'pengguna/login' => array(
         array(
             'field' => 'username',
             'label' => 'Username',

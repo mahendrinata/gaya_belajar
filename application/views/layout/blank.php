@@ -12,7 +12,8 @@
       'bootstrap.min',
       'bootstrap-responsive.min',
       'font-awesome.min',
-      'bootswatch'
+      'bootswatch',
+      'login'
     ));
 
     echo js(array(
@@ -23,6 +24,6 @@
     ?>
   </head>
   <body>
-    <?php $this->load->view('element/navigation/top_menu'); ?>
+    <?php $this->load->view('content/guest/' . $class . '/' . $method); ?>
   </body>
 </html>

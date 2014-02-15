@@ -17,7 +17,7 @@
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
           <li>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-lock icon-white"></i> Admin <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li><a href="">Ganti Profil</a></li>
               <li><a href="">Ganti Kata Sandi</a></li>
