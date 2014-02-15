@@ -16,6 +16,13 @@ class Admin_Controller extends App_Controller {
       redirect('login');
     }
   }
+  
+  public function check_access($access = array()){
+    if(!in_array(App_Controller::$USER['level'], $access)){
+      $this->show_message('access', FALSE);
+      redirect('admin/halaman');
+    }
+  }
 
 }
 

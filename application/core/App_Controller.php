@@ -39,7 +39,7 @@ class App_Controller extends CI_Controller {
 
     App_Controller::$ACTIVE_SESSION = $this->session->all_userdata();
     if (isset(App_Controller::$ACTIVE_SESSION['user']) && !empty(App_Controller::$ACTIVE_SESSION['user'])) {
-      App_Controller::$USER = App_Controller::$ACTIVE_SESSION['user'];
+      App_Controller::$USER = $this->data['user_login'] = App_Controller::$ACTIVE_SESSION['user'];
     }
 
     App_Controller::$POST_DATA = $this->input->post();

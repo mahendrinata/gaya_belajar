@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class Pengguna extends App_Controller {
+class Pengguna extends Admin_Controller {
 
   public function __construct() {
     parent::__construct();
@@ -14,6 +14,8 @@ class Pengguna extends App_Controller {
   }
 
   public function index() {
+    $this->check_access(array(Level::ADMIN));
+    
     $this->data['pengguna'] = $this->Pengguna_model->get_all_active(App_Controller::$PAGE);
 
     $this->pagination_create($this->data['pengguna']['count']);
@@ -22,12 +24,16 @@ class Pengguna extends App_Controller {
   }
 
   public function view($id = NULL) {
+    $this->check_access(array(Level::ADMIN));
+
     $this->data['pengguna'] = $this->Pengguna_model->get($id);
     $this->data['title'] = 'Detail Pengguna ' . $this->data['pengguna']['nama'];
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }
 
   public function add() {
+    $this->check_access(array(Level::ADMIN));
+
     if ($this->form_validation->run()) {
       $pengguna = App_Controller::$POST_DATA;
       $pengguna['password'] = md5($pengguna['password']);
@@ -42,6 +48,8 @@ class Pengguna extends App_Controller {
   }
 
   public function edit($id = NULL) {
+    $this->check_access(array(Level::ADMIN));
+
     if ($this->form_validation->run('nama')) {
       $pengguna = App_Controller::$POST_DATA;
       if (!empty($pengguna['password'])) {
@@ -62,6 +70,8 @@ class Pengguna extends App_Controller {
   }
 
   public function delete($id = NULL) {
+    $this->check_access(array(Level::ADMIN));
+
     $delete = $this->Pengguna_model->delete($id);
     $this->show_message('delete', $delete);
     redirect('admin/pengguna');
