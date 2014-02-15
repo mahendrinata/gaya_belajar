@@ -35,7 +35,7 @@ class App_Controller extends CI_Controller {
     App_Controller::$METHOD = $this->data['method'] = ($this->router->class == $this->router->method) ? 'index' : $this->router->method;
 
     App_Controller::$ID = $this->uri->segment(4);
-    App_Controller::$PAGE = $this->uri->segment(5);
+    App_Controller::$PAGE = $this->uri->segment(4);
 
     App_Controller::$ACTIVE_SESSION = $this->session->all_userdata();
     if (isset(App_Controller::$ACTIVE_SESSION['user']) && !empty(App_Controller::$ACTIVE_SESSION['user'])) {
