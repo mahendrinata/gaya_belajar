@@ -61,5 +61,17 @@ $config = array(
       'rules' => 'required'
     ),
   ),
+  'anjuran' => array(
+    array(
+      'field' => 'karakter_id',
+      'label' => 'Karakter',
+      'rules' => 'required'
+    ),
+    array(
+      'field' => 'anjuran',
+      'label' => 'Anjuran',
+      'rules' => 'required'
+    ),
+  ),
 );
 ?>

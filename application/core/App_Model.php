@@ -10,8 +10,6 @@ if (!defined('BASEPATH'))
 class App_Model extends Behavior_Model {
 
   protected $return_type = 'array';
-  public $before_create = array('created_at', 'updated_at');
-  public $before_update = array('updated_at');
   
 }
 

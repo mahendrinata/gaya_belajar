@@ -7,15 +7,15 @@ if (!defined('BASEPATH'))
  * User model use to add all behavior user
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class Karakter_model extends App_Model {
+class Anjuran_model extends App_Model {
 
-  public $_table = "karakter";
-  public $has_many = array('anjuran', 'jawaban');
+  public $_table = "anjuran";
+  public $belongs_to = array('karakter');
 
-  public function get_all_karakter($page = NULL, $limit = 10) {
+  public function get_all_anjuran($page = NULL, $limit = 10) {
     $this->limit($limit, $page);
 
-    $return['data'] = $this->get_all();
+    $return['data'] = $this->with('karakter')->get_all();
     $return['count'] = $this->count_all();
 
     return $return;
