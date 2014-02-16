@@ -73,5 +73,12 @@ $config = array(
       'rules' => 'required'
     ),
   ),
+  'pertanyaan' => array(
+    array(
+      'field' => 'pertanyaan',
+      'label' => 'Pertanyaan',
+      'rules' => 'required'
+    ),
+  ),
 );
 ?>
