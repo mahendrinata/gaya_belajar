@@ -22,7 +22,6 @@ class Pengguna extends App_Controller {
     if ($this->form_validation->run()) {
       $user = $this->Pengguna_model->get_by(array(
         'username' => App_Controller::$POST_DATA['username'],
-        'status' => Status::ACTIVE
       ));
 
       if (!empty($user) && (md5(App_Controller::$POST_DATA['password']) === $user['password'])) {

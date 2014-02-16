@@ -18,7 +18,7 @@ class Pengguna_model extends App_Model {
 
     $this->limit($limit, $page);
 
-    $return['data'] = $this->Pengguna_model->get_many_by($conditions);
+    $return['data'] = $this->get_many_by($conditions);
     $return['count'] = $this->count_by($conditions);
     
     return $return;

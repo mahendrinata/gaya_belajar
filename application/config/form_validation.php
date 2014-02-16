@@ -53,6 +53,13 @@ $config = array(
       'label' => 'Konfirmasi Password',
       'rules' => 'required|min_length[5]|matches[password]'
     )
-  )
+  ),
+  'nama_karakter' => array(
+    array(
+      'field' => 'nama_karakter',
+      'label' => 'Nama Karakter',
+      'rules' => 'required'
+    ),
+  ),
 );
 ?>

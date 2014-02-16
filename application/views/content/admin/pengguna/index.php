@@ -8,14 +8,14 @@ echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-st
 echo bootstrap_table_head(array('No.', 'Username', 'Nama', 'Tempat/Tanggal Lahir', 'Jenis Kelamin', 'Asal Sekolah', 'Kelas', 'Level', 'Status', 'Aksi'));
 echo bootstrap_tag_open('tbody');
 $offset = (empty($offset)) ? 0 : $offset;
-foreach ($pengguna['data'] as $key => $user) {
+foreach ($pengguna['data'] as $key => $karakter) {
   $offset++;
   $actions = array(
-    'view' => array('name' => 'Detail', 'action' => 'view/' . $user['id']),
-    'edit' => array('name' => 'Edit', 'action' => 'edit/' . $user['id']),
-    'delete' => array('name' => 'Delete', 'action' => 'delete/' . $user['id']),
+    'view' => array('name' => 'Detail', 'action' => 'view/' . $karakter['id']),
+    'edit' => array('name' => 'Edit', 'action' => 'edit/' . $karakter['id']),
+    'delete' => array('name' => 'Delete', 'action' => 'delete/' . $karakter['id']),
   );
-  echo bootstrap_table_tr(array($offset, $user['username'], $user['nama'], $user['tempat_lahir'] . ', ' . $user['tanggal_lahir'], $user['jenis_kelamin'], $user['asal_sekolah'], $user['kelas'], $user['level'], $user['status'], bootstrap_table_action_dropdown($class, $actions)), 'td');
+  echo bootstrap_table_tr(array($offset, $karakter['username'], $karakter['nama'], $karakter['tempat_lahir'] . ', ' . $karakter['tanggal_lahir'], $karakter['jenis_kelamin'], $karakter['asal_sekolah'], $karakter['kelas'], $karakter['level'], $karakter['status'], bootstrap_table_action_dropdown($class, $actions)), 'td');
 }
 echo bootstrap_tag_close('tbody');
 echo bootstrap_tag_close('table');
