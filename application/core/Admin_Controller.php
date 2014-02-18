@@ -3,10 +3,6 @@
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
-/**
- * Admin Controller use to add all function admin used by user
- * @author Mahendri Winata <mahen.0112@gmail.com>
- */
 class Admin_Controller extends App_Controller {
 
   public function __construct() {
