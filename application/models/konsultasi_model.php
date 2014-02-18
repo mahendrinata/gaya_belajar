@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Konsultasi_model extends App_Model {
 
-  public $_table = "pengguna";
+  public $_table = "konsultasi";
 
   public function get_all_konsultasi($page = NULL, $limit = 10) {
     $page = (empty($page)) ? 0 : $page;
@@ -22,6 +22,17 @@ class Konsultasi_model extends App_Model {
     )->result_array();
 
     return $return;
+  }
+  
+  public function insert_konsultasi($pengguna = array(), $data = array()){
+    $save = array();
+    foreach ($data as $jawaban_id){
+      $save[] = array(
+        'jawaban_id' => $jawaban_id,
+        'pengguna_id' => $pengguna['id']
+      );
+    }
+    return $this->insert_many($save);
   }
 
 }
