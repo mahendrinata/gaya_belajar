@@ -62,7 +62,7 @@ class Pertanyaan extends Admin_Controller {
       $this->data['pertanyaan'] = $this->Pertanyaan_model->with('jawaban')->get($id);
       $this->load->model('Karakter_model');
       $this->data['karakter'] = $this->Karakter_model->dropdown('id', 'nama_karakter');
-      
+
       $this->load->view(App_Controller::$LAYOUT, $this->data);
     }
   }
@@ -71,6 +71,8 @@ class Pertanyaan extends Admin_Controller {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     $delete = $this->Pertanyaan_model->delete($id);
+    $this->load->model('Jawaban_model');
+    $this->Jawaban_model->delete_by(array('pertanyaan_id', $id));
     $this->show_message('delete', $delete);
     redirect('admin/pertanyaan');
   }
