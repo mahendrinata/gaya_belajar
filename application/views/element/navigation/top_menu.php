@@ -24,7 +24,7 @@
           if ($user_login['level'] == Level::SISWA) {
             ?>
             <li><?php echo anchor('admin/pertanyaan/konsultasi', 'Konsultasi'); ?></li>
-            <li><?php echo anchor('admin/konsultasi/hasil', 'Riwayat Konsultasi'); ?></li>
+            <li><?php echo anchor('admin/konsultasi/hasil', 'Hasil Konsultasi'); ?></li>
           <?php } ?>
         </ul>
         <ul class="nav pull-right" id="main-menu-right">

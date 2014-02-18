@@ -23,8 +23,8 @@
     ?>
   </head>
   <body>
-    <?php 
-    $this->load->view('element/navigation/top_menu'); 
+    <?php
+    $this->load->view('element/navigation/top_menu');
     $this->load->view('element/general/content')
     ?>
   </body>

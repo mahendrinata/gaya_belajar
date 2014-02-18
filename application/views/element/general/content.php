@@ -1,4 +1,6 @@
 <div class="container">
+  <?php echo bootstrap_alert($this->session->flashdata('message'), 'center'); ?>
+  <div class="clearfix"></div>
   <section>
     <div class="row">
       <div class="span12">

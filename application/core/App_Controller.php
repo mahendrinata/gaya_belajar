@@ -47,10 +47,10 @@ class App_Controller extends CI_Controller {
 
   protected function show_message($action = NULL, $callback_action = FALSE, $message = NULL) {
     $actions = array(
-      'create' => array(
+      'insert' => array(
         TRUE => 'Create data success..',
         FALSE => 'Create data failed.'),
-      'edit' => array(
+      'update' => array(
         TRUE => 'Update data success.',
         FALSE => 'Update data failed.'),
       'delete' => array(
@@ -60,9 +60,8 @@ class App_Controller extends CI_Controller {
         TRUE => 'The page you are correct access.',
         FALSE => 'An error occurred on the page you access.'),
       'access' > array(
-      TRUE => 'You have access this page',
-      FALSE => 'You do not have access this page'
-      )
+        TRUE => 'You have access this page',
+        FALSE => 'You do not have access this page'),
     );
 
     $message = (empty($message)) ? $actions[$action][$callback_action] : $message;

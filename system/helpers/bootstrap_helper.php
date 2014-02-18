@@ -399,7 +399,7 @@ function bootstrap_alert_class($type) {
 }
 
 function bootstrap_alert_before($position = NULL, $uid = NULL) {
-  $output = '<div id="error-message-' . $uid . '" style="display: none;">';
+  $output = '<div id="error-message-' . $uid . '" style="display: none; position: relative; top: 65px;">';
   $output .= '<div class="container-fluid">';
   switch ($position) {
     case 'right':
@@ -420,7 +420,7 @@ function bootstrap_alert_after($uid = NULL) {
   $output = bootstrap_tag_close('div');
   $output .= bootstrap_tag_close('div');
   $output .= bootstrap_tag_close('div');
-  $output .= bootstrap_tag_close('div');
+//  $output .= bootstrap_tag_close('div');
   $output .= bootstrap_tag_open('script', array('type' => 'text/javascript'));
   $output .= bootstrap_jquery_document_ready('$("#error-message-' . $uid . '").slideDown(800).delay(8000).slideUp(800)');
   $output .= bootstrap_tag_close('script');
