@@ -30,6 +30,9 @@ class Pertanyaan extends Admin_Controller {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     $this->data['pertanyaan'] = $this->Pertanyaan_model->with('jawaban')->get($id);
+    $this->load->model('Karakter_model');
+    $this->data['karakter'] = $this->Karakter_model->dropdown('id', 'nama_karakter');
+
     $this->data['title'] = 'Detail Pertanyaan';
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }
@@ -38,11 +41,14 @@ class Pertanyaan extends Admin_Controller {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     if ($this->form_validation->run('pertanyaan')) {
-      $add = $this->Pertanyaan_model->insert(App_Controller::$POST_DATA);
+      $add = $this->Pertanyaan_model->insert_pertanyaan(App_Controller::$POST_DATA);
       $this->show_message('insert', $add);
       redirect('admin/pertanyaan');
     } else {
       $this->data['title'] = 'Pertanyaan Baru';
+      $this->load->model('Karakter_model');
+      $this->data['karakter'] = $this->Karakter_model->dropdown('id', 'nama_karakter');
+
       $this->load->view(App_Controller::$LAYOUT, $this->data);
     }
   }
@@ -51,12 +57,15 @@ class Pertanyaan extends Admin_Controller {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     if ($this->form_validation->run('pertanyaan')) {
-      $update = $this->Pertanyaan_model->update($id, App_Controller::$POST_DATA);
+      $update = $this->Pertanyaan_model->update_pertanyaan($id, App_Controller::$POST_DATA);
       $this->show_message('update', $update);
       redirect('admin/pertanyaan');
     } else {
       $this->data['title'] = 'Ubah Pertanyaan';
-      $this->data['pertanyaan'] = $this->Pertanyaan_model->get($id);
+      $this->data['pertanyaan'] = $this->Pertanyaan_model->with('jawaban')->get($id);
+      $this->load->model('Karakter_model');
+      $this->data['karakter'] = $this->Karakter_model->dropdown('id', 'nama_karakter');
+      
       $this->load->view(App_Controller::$LAYOUT, $this->data);
     }
   }
