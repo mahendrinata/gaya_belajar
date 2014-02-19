@@ -46,7 +46,7 @@ class App_Controller extends CI_Controller {
   }
 
   protected function show_message($action = NULL, $callback_action = FALSE, $message = NULL) {
-    $action = ($action != FALSE) ? TRUE : FALSE;
+    $callback_action = ($callback_action != FALSE) ? TRUE : FALSE;
     
     $actions = array(
       'insert' => array(
