@@ -6,25 +6,31 @@
     <tr>
       <th>No.</th>
       <th>Nama</th>
-      <th>Karakter</th>
+      <?php
+      foreach ($karakter as $k) {
+        echo '<th>' . $k['nama_karakter'] . '</th>';
+      }
+      ?>
       <th>Jumlah</th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $nama = NULL;
     $offset = (empty($offset)) ? 0 : $offset;
     foreach ($konsultasi as $konsul) {
       $offset++;
-      $n = ($konsul['nama'] == $nama) ? NULL : $konsul['nama'];
       echo '<tr>';
       echo '<td>' . $offset . '</td>';
-      echo '<td>' . $n . '</td>';
-      echo '<td>' . $konsul['nama_karakter'] . '</td>';
+      echo '<td>' . $konsul['nama'] . '</td>';
+      foreach ($karakter as $k) {
+        $count = $konsul[url_title($k['nama_karakter'], '_', TRUE)];
+        echo '<td>' . $count . '</td>';
+      }
       echo '<td>' . $konsul['jumlah'] . '</td>';
       echo '</tr>';
-      $nama = $konsul['nama'];
     }
     ?>
   </tbody>
 </table>
+
+<?php echo $pagination; ?>

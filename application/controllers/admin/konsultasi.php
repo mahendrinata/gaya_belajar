@@ -14,7 +14,14 @@ class Konsultasi extends Admin_Controller {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     $this->data['title'] = 'Konsultasi Siswa';
-    $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi();
+    $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi(App_Controller::$PAGE);
+    
+    $this->load->model('Pengguna_model');
+    $count = $this->Pengguna_model->count_all();
+    $this->pagination_create($count);
+    
+    $this->load->model('Karakter_model');
+    $this->data['karakter'] = $this->Karakter_model->get_all();
 
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }

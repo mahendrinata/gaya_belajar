@@ -10,17 +10,28 @@ class Konsultasi_model extends App_Model {
   public function get_all_konsultasi($page = NULL, $limit = 10) {
     $page = (empty($page)) ? 0 : $page;
 
+    $this->load->model('Karakter_model');
+    $karakter = $this->Karakter_model->get_all();
+    $karakter_query = array();
+    foreach ($karakter as $k) {
+      $karakter_query[] = '(SELECT COUNT(jawaban.karakter_id) '
+        . 'FROM konsultasi '
+        . 'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id '
+        . 'WHERE konsultasi.pengguna_id = pengguna.id AND jawaban.karakter_id =' . $k['id'] . ') AS ' . url_title($k['nama_karakter'], '_', TRUE);
+    }
+      $karakter_query[] = '(SELECT COUNT(jawaban.karakter_id) '
+        . 'FROM konsultasi '
+        . 'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id '
+        . 'WHERE konsultasi.pengguna_id = pengguna.id) AS jumlah ';
+
+    $karakter_str = implode(',', $karakter_query);
+
     $return = $this->db->query(
-        'SELECT pengguna.nama, karakter.nama_karakter, COUNT(konsultasi.id) AS jumlah ' .
-        'FROM konsultasi ' .
-        'INNER JOIN pengguna ON pengguna.id = konsultasi.pengguna_id ' .
-        'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id ' .
-        'INNER JOIN karakter ON karakter.id = jawaban.karakter_id ' .
-        'GROUP BY pengguna.nama, karakter.nama_karakter ' .
-        'ORDER BY pengguna.nama, karakter.nama_karakter ' .
+        'SELECT pengguna.nama, ' . $karakter_str . ' ' .
+        'FROM pengguna ' .
         'LIMIT ' . $page . ',' . $limit
       )->result_array();
-
+    
     return $return;
   }
 
@@ -34,12 +45,12 @@ class Konsultasi_model extends App_Model {
         'GROUP BY karakter.id, karakter.nama_karakter, konsultasi.tanggal ' .
         'ORDER BY konsultasi.tanggal,karakter.id, karakter.nama_karakter '
       )->result_array();
-    
+
     $konsultasi = array('total' => 0, 'data' => array(), 'karakter' => NULL, 'tanggal' => NULL);
     $max = 0;
-    foreach ($data as $konsul){
+    foreach ($data as $konsul) {
       $konsultasi['data'][$konsul['id']] = $konsul;
-      if($konsul['jumlah'] > $max){
+      if ($konsul['jumlah'] > $max) {
         $max = $konsul['jumlah'];
         $konsultasi['karakter'] = $konsul['id'];
       }
