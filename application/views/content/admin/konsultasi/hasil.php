@@ -50,9 +50,9 @@
 
   <div class="well text-center">
     <h3>Anjuran</h3>
-    <?php foreach ($karakter['anjuran'] as $anjuran) { ?>
-      <h4><?php echo $anjuran['anjuran']; ?></h4>
-    <?php } ?>
+      <?php foreach ($karakter['anjuran'] as $anjuran) { ?>
+        <p><?php echo $anjuran['anjuran']; ?></p>
+      <?php } ?>
   </div>
 
   <div class="well text-center">

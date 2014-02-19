@@ -13,15 +13,17 @@
   <tbody>
     <?php
     $nama = NULL;
-    $no = 1;
+    $offset = (empty($offset)) ? 0 : $offset;
     foreach ($konsultasi as $konsul) {
+      $offset++;
       $n = ($konsul['nama'] == $nama) ? NULL : $konsul['nama'];
-      echo '<td>' . $no . '</td>';
+      echo '<tr>';
+      echo '<td>' . $offset . '</td>';
       echo '<td>' . $n . '</td>';
       echo '<td>' . $konsul['nama_karakter'] . '</td>';
       echo '<td>' . $konsul['jumlah'] . '</td>';
+      echo '</tr>';
       $nama = $konsul['nama'];
-      $no++;
     }
     ?>
   </tbody>

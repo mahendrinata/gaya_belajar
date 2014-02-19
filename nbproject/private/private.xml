@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/controllers/admin/anjuran.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/pertanyaan/edit.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/pertanyaan/add.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/models/pertanyaan_model.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/system/helpers/bootstrap_helper.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/controllers/admin/pertanyaan.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/config/form_validation.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/system/helpers/form_helper.php</file>
-            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/pertanyaan/index.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/konsultasi/index.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/controllers/admin/konsultasi.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/konsultasi/hasil.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/halaman/index.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/pertanyaan/konsultasi.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/models/konsultasi_model.php</file>
         </group>
     </open-files>
 </project-private>
