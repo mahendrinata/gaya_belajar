@@ -79,7 +79,7 @@ class Pengguna extends Admin_Controller {
       $pengguna = App_Controller::$POST_DATA;
       $update = $this->Pengguna_model->update(App_Controller::$USER['id'], $pengguna);
       $this->show_message('update', $update);
-      redirect('admin/pengguna');
+      redirect('admin/halaman');
     } else {
       $this->data['title'] = 'Ubah Akun';
       $this->data['pengguna'] = $this->Pengguna_model->get(App_Controller::$USER['id']);
@@ -94,7 +94,7 @@ class Pengguna extends Admin_Controller {
       unset($pengguna['confirmation_password']);
       $update = $this->Pengguna_model->update(App_Controller::$USER['id'], $pengguna);
       $this->show_message('update', $update);
-      redirect('admin/pengguna');
+      redirect('admin/halaman');
     } else {
       $this->data['title'] = 'Ganti Password';
       $this->load->view(App_Controller::$LAYOUT, $this->data);
