@@ -19,13 +19,10 @@
           if ($user_login['level'] == Level::ADMIN) {
             ?>
             <li><?php echo anchor('admin/pengguna', 'Pengguna'); ?></li>
-            <?php
-          }
-          if ($user_login['level'] == Level::SISWA) {
-            ?>
-            <li><?php echo anchor('admin/pertanyaan/konsultasi', 'Konsultasi'); ?></li>
-            <li><?php echo anchor('admin/konsultasi/hasil', 'Hasil Konsultasi'); ?></li>
-          <?php } ?>
+            <?php }
+          ?>
+          <li><?php echo anchor('admin/pertanyaan/konsultasi', 'Konsultasi'); ?></li>
+          <li><?php echo anchor('admin/konsultasi/hasil', 'Hasil Konsultasi'); ?></li>
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
           <li>

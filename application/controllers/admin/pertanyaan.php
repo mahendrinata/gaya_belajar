@@ -78,8 +78,6 @@ class Pertanyaan extends Admin_Controller {
   }
 
   public function konsultasi() {
-    $this->check_access(array(Level::SISWA));
-
     $this->data['title'] = 'Konsultasi';
     $this->load->model('Konsultasi_model');
     $this->data['konsultasi'] = $this->Konsultasi_model->count_by(array('pengguna_id' => App_Controller::$USER['id']));
