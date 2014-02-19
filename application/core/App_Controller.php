@@ -48,20 +48,20 @@ class App_Controller extends CI_Controller {
   protected function show_message($action = NULL, $callback_action = FALSE, $message = NULL) {
     $actions = array(
       'insert' => array(
-        TRUE => 'Create data success..',
-        FALSE => 'Create data failed.'),
+        TRUE => 'Data berhasil dibuat..',
+        FALSE => 'Data gagal dibuat.'),
       'update' => array(
-        TRUE => 'Update data success.',
-        FALSE => 'Update data failed.'),
+        TRUE => 'Data berhasil diubah.',
+        FALSE => 'Data Gagal Diubah.'),
       'delete' => array(
-        TRUE => 'Delete data success.',
-        FALSE => 'Delete data failed.'),
+        TRUE => 'Data berhasil dihapus.',
+        FALSE => 'Data gagal dihapus.'),
       'redirect' => array(
-        TRUE => 'The page you are correct access.',
-        FALSE => 'An error occurred on the page you access.'),
-      'access' > array(
-        TRUE => 'You have access this page',
-        FALSE => 'You do not have access this page'),
+        TRUE => 'Halaman yang anda akses benar.',
+        FALSE => 'Terjadi kesalahan pada halaman yang anda akses.'),
+      'access' => array(
+        TRUE => 'Anda dapat mengakses halaman ini',
+        FALSE => 'Anda tidak memiliki akses ha ini'),
     );
 
     $message = (empty($message)) ? $actions[$action][$callback_action] : $message;
