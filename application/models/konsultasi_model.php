@@ -35,7 +35,7 @@ class Konsultasi_model extends App_Model {
         'ORDER BY konsultasi.tanggal,karakter.id, karakter.nama_karakter '
       )->result_array();
     
-    $konsultasi = array('total' => 0);
+    $konsultasi = array('total' => 0, 'data' => array(), 'karakter' => NULL, 'tanggal' => NULL);
     $max = 0;
     foreach ($data as $konsul){
       $konsultasi['data'][$konsul['id']] = $konsul;

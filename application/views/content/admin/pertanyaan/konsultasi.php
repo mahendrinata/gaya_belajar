@@ -17,12 +17,15 @@
     <h1><?php echo $title; ?></h1>
   </div>
   <?php
-  echo form_open('admin/konsultasi/jawaban');
+  echo form_open('admin/konsultasi/jawaban', 'class="row"');
   $i = 0;
   foreach ($pertanyaan as $tanya) {
     $i++;
+    if (($i - 1) % 3 == 0 && $i != 1) {
+      echo '<div class="clearfix"></div><hr>';
+    }
     ?>
-    <div class="control-group">
+    <div class="control-group span4">
       <div class="controls">
         <?php echo $i . '. ' . $tanya['pertanyaan']; ?>
         <ul id="jawaban" style="list-style: none;">
@@ -34,6 +37,7 @@
     </div>
 
   <?php } ?>
+  <div class="clearfix"></div>
   <hr>
   <div class="control-group">
     <div class="controls">

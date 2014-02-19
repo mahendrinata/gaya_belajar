@@ -25,19 +25,28 @@ class Konsultasi extends Admin_Controller {
     redirect('admin/konsultasi/hasil');
   }
 
-  public function hasil() {
+  public function hasil($template = TRUE) {
     $this->data['pengguna'] = App_Controller::$USER;
     $this->load->model('Karakter_model');
     $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil(App_Controller::$USER);
-    $this->data['karakter'] = $this->Karakter_model->with('anjuran')->get($this->data['konsultasi']['karakter']);
+    $this->data['karakter'] = (empty($this->data['konsultasi']['karakter'])) ? array() : $this->Karakter_model->with('anjuran')->get($this->data['konsultasi']['karakter']);
 
-    $this->load->view(App_Controller::$LAYOUT, $this->data);
+    if ($template) {
+      $this->load->view(App_Controller::$LAYOUT, $this->data);
+    }
   }
 
   public function reset() {
     $delete = $this->Konsultasi_model->delete_by(array('pengguna_id' => App_Controller::$USER['id']));
     $this->show_message('delete', $delete);
     redirect('admin/pertanyaan/konsultasi');
+  }
+  
+  public function print_hasil(){
+    $this->hasil(FALSE);
+    
+    $this->data['layout'] = 'content/admin/konsultasi/hasil';
+    $this->load->view('layout/print', $this->data);
   }
 
 }
