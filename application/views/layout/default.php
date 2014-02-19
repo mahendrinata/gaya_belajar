@@ -12,13 +12,16 @@
       'bootstrap.min',
       'bootstrap-responsive.min',
       'font-awesome.min',
-      'bootswatch'
+      'bootswatch',
+      'datepicker'
     ));
 
     echo js(array(
       'jquery.min',
       'bootstrap.min',
-      'bootswatch'
+      'bootswatch',
+      'bootstrap-datepicker',
+      'custom'
     ));
     ?>
   </head>
