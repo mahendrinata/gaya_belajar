@@ -7,7 +7,7 @@ echo bootstrap_form_input('username', NULL, array('class' => 'span6', 'placehold
 echo bootstrap_form_input('nama', NULL, array('class' => 'span6', 'placeholder' => 'Nama', 'label' => 'Nama' . bootstrap_text_important()));
 echo bootstrap_form_input('tempat_lahir', NULL, array('class' => 'span6', 'placeholder' => 'Tempat Lahir', 'label' => 'Tempat Lahir'));
 echo bootstrap_form_input('tanggal_lahir', NULL, array('readonly' =>'readonly', 'class' => 'datepicker span2', 'placeholder' => 'Tempat Lahir', 'label' => 'Tanggal Lahir'));
-echo bootstrap_form_dropdown('jenis_kelamin', array(), array('class' => 'span2', 'list' => array('L' => 'Laki - Laki', 'P' => 'Perempuan'), 'label' => 'Jenis Kelamin'));
+echo bootstrap_form_dropdown('jenis_kelamin', array(), array('class' => 'span2', 'list' => array('Laki - Laki' => 'Laki - Laki', 'Perempuan' => 'Perempuan'), 'label' => 'Jenis Kelamin'));
 echo bootstrap_form_textarea('alamat', NULL, array('class' => 'span8', 'placeholder' => 'Alamat', 'rows' => 6, 'label' => 'Alamat'));
 echo bootstrap_form_input('agama', NULL, array('class' => 'span6', 'placeholder' => 'Agama', 'label' => 'Agama'));
 echo bootstrap_form_input('asal_sekolah', NULL, array('class' => 'span6', 'placeholder' => 'Asal Sekolah', 'label' => 'Asal Sekolah'));

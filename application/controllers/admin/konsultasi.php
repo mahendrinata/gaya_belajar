@@ -33,7 +33,8 @@ class Konsultasi extends Admin_Controller {
   }
 
   public function hasil($template = TRUE) {
-    $this->data['pengguna'] = App_Controller::$USER;
+    $this->load->model('Pengguna_model');
+    $this->data['pengguna'] = $this->Pengguna_model->get(App_Controller::$USER['id']);
     $this->load->model('Karakter_model');
     $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil(App_Controller::$USER);
     $this->data['karakter'] = (empty($this->data['konsultasi']['karakter'])) ? array() : $this->Karakter_model->with('anjuran')->get($this->data['konsultasi']['karakter']);

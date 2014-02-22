@@ -14,7 +14,7 @@
   <section>
     <div class="hero-unit">
       <h1>Hasil Konsultasi</h1>
-      <p>Tanggal Konsultasi : <?php echo $konsultasi['tanggal']; ?></p>
+      <p>Tanggal Konsultasi : <?php echo date('d F Y', strtotime($konsultasi['tanggal'])); ?></p>
     </div>
   </section>
 
@@ -25,8 +25,16 @@
         <td><?php echo $pengguna['nama']; ?></td>
       </tr>
       <tr>
+        <th>Jenis Kelamin</th>
+        <td><?php echo $pengguna['jenis_kelamin']; ?></td>
+      </tr>
+      <tr>
         <th>Tempat, Tanggal Lahir</th>
-        <td><?php echo $pengguna['tempat_lahir'] . ', ' . $pengguna['tanggal_lahir']; ?></td>
+        <td><?php echo $pengguna['tempat_lahir'] . ', ' . date('d F Y', strtotime($pengguna['tanggal_lahir'])); ?></td>
+      </tr>
+      <tr>
+        <th>Alamat</th>
+        <td><?php echo $pengguna['alamat']; ?></td>
       </tr>
       <tr>
         <th>Agama</th>
