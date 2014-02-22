@@ -13,7 +13,7 @@ class Konsultasi extends Admin_Controller {
   public function index() {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
-    $this->data['title'] = 'Konsultasi Siswa';
+    $this->data['title'] = 'Riwayat Konsultasi';
     $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi(App_Controller::$PAGE);
     
     $this->load->model('Pengguna_model');
@@ -24,6 +24,20 @@ class Konsultasi extends Admin_Controller {
     $this->data['karakter'] = $this->Karakter_model->get_all();
 
     $this->load->view(App_Controller::$LAYOUT, $this->data);
+  }
+  
+  public function print_index() {
+    $this->check_access(array(Level::ADMIN, Level::PAKAR));
+
+    $this->data['title'] = 'Riwayat Konsultasi';
+    $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi(App_Controller::$PAGE, NULL);
+    $this->data['pagination'] = NULL;
+    
+    $this->load->model('Karakter_model');
+    $this->data['karakter'] = $this->Karakter_model->get_all();
+
+     $this->data['layout'] = 'content/admin/konsultasi/index';
+    $this->load->view('layout/print', $this->data);
   }
 
   public function jawaban() {

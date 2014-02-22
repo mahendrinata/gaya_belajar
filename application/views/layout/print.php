@@ -31,6 +31,10 @@
         line-height: 20px;
         text-rendering: optimizelegibility;
       }
+      .print-border, .print-border th, .print-border td{
+        border: 1px solid #000;
+        border-collapse: collapse;
+      }
     </style>
     <?php echo css(array('font-awesome.min')); ?>
   </head>

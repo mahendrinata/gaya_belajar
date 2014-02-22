@@ -26,13 +26,16 @@ class Konsultasi_model extends App_Model {
 
     $karakter_str = implode(',', $karakter_query);
 
+    if(!empty($limit)){
+      $limit = 'LIMIT ' . $page . ',' . $limit;
+    }
+    
     $return = $this->db->query(
         'SELECT pengguna.nama, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
         'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
         'GROUP BY pengguna.nama, konsultasi.tanggal ' .
-        'ORDER BY konsultasi.tanggal ' .
-        'LIMIT ' . $page . ',' . $limit
+        'ORDER BY konsultasi.tanggal ' . $limit
       )->result_array();
 
     return $return;

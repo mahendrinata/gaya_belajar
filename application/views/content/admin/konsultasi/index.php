@@ -1,7 +1,10 @@
 <div class="page-header">
   <h1><?php echo $title; ?></h1>
 </div>
-<table class="table table-bordered table-striped table-hover bg-white">
+<?php
+echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
+?>
+<table class="table table-bordered table-striped table-hover bg-white print-border">
   <thead>
     <tr>
       <th rowspan="2" style="text-align: center;vertical-align: middle">No.</th>
