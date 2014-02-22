@@ -8,6 +8,13 @@
       yaitu menganalisa jawaban pertanyaan yang merupakan karakter-karakter seseorang atau siswa dan memberikan sebuah kesimpulan tentang 
       gaya belajar yang dimiliki oleh siswa tersebut
     </p>
+    <h3>Jenis Gaya Bejar</h3>
+    <?php
+    foreach ($karakter as $k) {
+      echo '<h4>' . $k['nama_karakter'] . '</h4>';
+      echo '<p>' . $k['keterangan'] . '</p>';
+    }
+    ?>
     <?php
     echo anchor('admin/pertanyaan/konsultas', 'Konsultasi', 'class="btn btn-primary btn-large"');
     ?>

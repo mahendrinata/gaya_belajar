@@ -10,6 +10,9 @@ class Halaman extends Admin_Controller {
   }
   
   public function about(){
+    $this->load->model('Karakter_model');
+    $this->data['karakter'] = $this->Karakter_model->get_all();
+    
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }
 
