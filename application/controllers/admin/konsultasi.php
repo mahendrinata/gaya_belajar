@@ -10,33 +10,35 @@ class Konsultasi extends Admin_Controller {
     $this->load->model('Konsultasi_model');
   }
 
-  public function index() {
+  public function index($template = TRUE) {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     $this->data['title'] = 'Riwayat Konsultasi';
     $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi(App_Controller::$PAGE);
-    
+
     $this->load->model('Pengguna_model');
     $count = $this->Pengguna_model->count_all();
     $this->pagination_create($count);
-    
+
     $this->load->model('Karakter_model');
     $this->data['karakter'] = $this->Karakter_model->get_all();
 
-    $this->load->view(App_Controller::$LAYOUT, $this->data);
+    if ($template) {
+      $this->load->view(App_Controller::$LAYOUT, $this->data);
+    }
   }
-  
+
   public function print_index() {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
 
     $this->data['title'] = 'Riwayat Konsultasi';
     $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi(App_Controller::$PAGE, NULL);
     $this->data['pagination'] = NULL;
-    
+
     $this->load->model('Karakter_model');
     $this->data['karakter'] = $this->Karakter_model->get_all();
 
-     $this->data['layout'] = 'content/admin/konsultasi/index';
+    $this->data['layout'] = 'content/admin/konsultasi/index';
     $this->load->view('layout/print', $this->data);
   }
 
@@ -63,11 +65,31 @@ class Konsultasi extends Admin_Controller {
     $this->show_message('delete', $delete);
     redirect('admin/pertanyaan/konsultasi');
   }
-  
-  public function print_hasil(){
+
+  public function print_hasil() {
     $this->hasil(FALSE);
-    
+
     $this->data['layout'] = 'content/admin/konsultasi/hasil';
+    $this->load->view('layout/print', $this->data);
+  }
+
+  public function laporan($id = NULL, $template = TRUE) {
+    $this->load->model('Karakter_model');
+    $this->data['karakter'] = $karakter = $this->Karakter_model->get($id);
+
+    $this->data['title'] = 'Daftar siswa dengan gaya belajar ' . $karakter['nama_karakter'];
+
+    $this->data['konsultasi'] = $this->Konsultasi_model->get_laporan($karakter);
+
+    if ($template) {
+      $this->load->view(App_Controller::$LAYOUT, $this->data);
+    }
+  }
+
+  public function print_laporan($id = NULL) {
+    $this->laporan($id, FALSE);
+
+    $this->data['layout'] = 'content/admin/konsultasi/laporan';
     $this->load->view('layout/print', $this->data);
   }
 

@@ -26,15 +26,15 @@ class Konsultasi_model extends App_Model {
 
     $karakter_str = implode(',', $karakter_query);
 
-    if(!empty($limit)){
+    if (!empty($limit)) {
       $limit = 'LIMIT ' . $page . ',' . $limit;
     }
-    
+
     $return = $this->db->query(
-        'SELECT pengguna.nama, konsultasi.tanggal, ' . $karakter_str . ' ' .
+        'SELECT pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
         'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
-        'GROUP BY pengguna.nama, konsultasi.tanggal ' .
+        'GROUP BY pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal ' .
         'ORDER BY konsultasi.tanggal ' . $limit
       )->result_array();
 
@@ -77,6 +77,25 @@ class Konsultasi_model extends App_Model {
       );
     }
     return $this->insert_many($save);
+  }
+
+  public function get_laporan($active_karakter = array()) {
+    $konsultasi = $this->get_all_konsultasi(NULL, NULL);
+    $karakter = $this->Karakter_model->get_many_by(array('id !=' => $active_karakter['id']));
+    $return = array();
+    foreach ($konsultasi as $konsul) {
+      $data = TRUE;
+      foreach ($karakter as $k) {
+        if ($konsul[url_title($active_karakter['nama_karakter'], '_', TRUE)] < $konsul[url_title($k['nama_karakter'], '_', TRUE)]) {
+          $data = FALSE;
+        }
+      }
+      if ($data) {
+        $return[] = $konsul;
+      }
+    }
+
+    return $return;
   }
 
 }
