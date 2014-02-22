@@ -9,6 +9,7 @@
       <?php echo anchor('/', 'LBB GenPI Education', 'class="brand"'); ?>
       <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
+          <li><?php echo anchor('admin/halaman/about', '<i class="icon-leaf icon-white"></i> About'); ?></li>
           <?php if (in_array($user_login['level'], array(Level::ADMIN, Level::PAKAR))) { ?>
             <li><?php echo anchor('admin/karakter', '<i class="icon-eye-open icon-white"></i> Karakter'); ?></li>
             <li><?php echo anchor('admin/anjuran', '<i class="icon-comment icon-white"></i> Anjuran'); ?></li>
