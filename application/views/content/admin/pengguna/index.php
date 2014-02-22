@@ -15,7 +15,7 @@ foreach ($pengguna['data'] as $key => $karakter) {
     'edit' => array('name' => 'Edit', 'action' => 'edit/' . $karakter['id']),
     'delete' => array('name' => 'Delete', 'action' => 'delete/' . $karakter['id']),
   );
-  echo bootstrap_table_tr(array($offset, $karakter['username'], $karakter['nama'], $karakter['tempat_lahir'] . ', ' . $karakter['tanggal_lahir'], $karakter['jenis_kelamin'], $karakter['asal_sekolah'], $karakter['kelas'], $karakter['level'], bootstrap_table_action_dropdown($class, $actions)), 'td');
+  echo bootstrap_table_tr(array($offset, $karakter['username'], $karakter['nama'], $karakter['tempat_lahir'] . ', ' . date('d F Y', strtotime($karakter['tanggal_lahir'])), $karakter['jenis_kelamin'], $karakter['asal_sekolah'], $karakter['kelas'], $karakter['level'], bootstrap_table_action_dropdown($class, $actions)), 'td');
 }
 echo bootstrap_tag_close('tbody');
 echo bootstrap_tag_close('table');
