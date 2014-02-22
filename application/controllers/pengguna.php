@@ -31,6 +31,7 @@ class Pengguna extends App_Controller {
         redirect('admin/halaman');
       } else {
         $this->show_message('login', FALSE, 'Maaf, Username atau Password anda salah.');
+        redirect('login');
       }
     }
     $this->load->view('layout/blank', $this->data);
