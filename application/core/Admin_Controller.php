@@ -11,6 +11,9 @@ class Admin_Controller extends App_Controller {
       $this->show_message('access', FALSE);
       redirect('login');
     }
+    
+    $this->load->model('Karakter_model');
+    $this->data['menu_karakter'] = $this->Karakter_model->get_all();
   }
   
   public function check_access($access = array()){

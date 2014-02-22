@@ -6,32 +6,53 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <?php echo anchor('/', 'Gaya Belajar', 'class="brand"'); ?>
+      <?php echo anchor('/', 'LBB GenPI Education', 'class="brand"'); ?>
       <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <?php if (in_array($user_login['level'], array(Level::ADMIN, Level::PAKAR))) { ?>
-            <li><?php echo anchor('admin/karakter', 'Karakter'); ?></li>
-            <li><?php echo anchor('admin/anjuran', 'Anjuran'); ?></li>
-            <li><?php echo anchor('admin/pertanyaan', 'Pertanyaan'); ?></li>
-            <li><?php echo anchor('admin/konsultasi', 'Riwayat Konsultasi'); ?></li>
+            <li><?php echo anchor('admin/karakter', '<i class="icon-eye-open icon-white"></i> Karakter'); ?></li>
+            <li><?php echo anchor('admin/anjuran', '<i class="icon-comment icon-white"></i> Anjuran'); ?></li>
+            <li><?php echo anchor('admin/pertanyaan', '<i class="icon-list icon-white"></i> Pertanyaan'); ?></li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-th-large icon-white"></i> Konsultasi</a>
+              <ul class="dropdown-menu">
+                <li><?php echo anchor('admin/konsultasi', '<i class="icon-align-justify"></i> Riwayat Konsultasi'); ?></li>
+                <li class="dropdown-submenu">
+                  <a tabindex="-1" href="#"><i class="icon-calendar"></i> Laporan Konsultasi</a>
+                  <ul class="dropdown-menu">
+                    <?php
+                    foreach ($menu_karakter as $k_menu) {
+                      echo '<li>' . anchor('admin/konsultasi/laporan/' . $k_menu['id'], '<i class="icon-align-center"></i> Laporan ' . ucwords($k_menu['nama_karakter'])) . '</li>';
+                    }
+                    ?>
+                  </ul>
+                </li>
+                <li class="divider"></li>
+                <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file"></i> Konsultasi'); ?></li>
+                <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt"></i> Hasil Konsultasi'); ?></li>
+              </ul>
+            </li>
             <?php
           }
           if ($user_login['level'] == Level::ADMIN) {
             ?>
-            <li><?php echo anchor('admin/pengguna', 'Pengguna'); ?></li>
-            <?php }
-          ?>
-          <li><?php echo anchor('admin/pertanyaan/konsultasi', 'Konsultasi'); ?></li>
-          <li><?php echo anchor('admin/konsultasi/hasil', 'Hasil Konsultasi'); ?></li>
+            <li><?php echo anchor('admin/pengguna', '<i class="icon-user"></i> Pengguna'); ?></li>
+            <?php
+          }
+          if ($user_login['level'] == Level::SISWA) {
+            ?>
+            <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file icon-white"></i> Konsultasi'); ?></li>
+            <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt icon-white"></i> Hasil Konsultasi'); ?></li>
+          <?php } ?>
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
           <li>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-lock icon-white"></i> <?php echo $user_login['nama']; ?> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
-              <li><?php echo anchor('admin/pengguna/edit_account', 'Ganti Profile'); ?></li>
-              <li><?php echo anchor('admin/pengguna/change_password', 'Ganti Kata Sandi'); ?></li>
+              <li><?php echo anchor('admin/pengguna/edit_account', '<i class="icon-retweet"></i> Ganti Profile'); ?></li>
+              <li><?php echo anchor('admin/pengguna/change_password', '<i class="icon-random"></i> Ganti Kata Sandi'); ?></li>
               <li class="divider"></li>
-              <li><?php echo anchor('logout', 'Keluar'); ?></li>
+              <li><?php echo anchor('logout', '<i class="icon-share-alt"></i> Keluar'); ?></li>
             </ul>
           </li>
         </ul>
