@@ -19,19 +19,22 @@ class Konsultasi_model extends App_Model {
         . 'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id '
         . 'WHERE konsultasi.pengguna_id = pengguna.id AND jawaban.karakter_id =' . $k['id'] . ') AS ' . url_title($k['nama_karakter'], '_', TRUE);
     }
-      $karakter_query[] = '(SELECT COUNT(jawaban.karakter_id) '
-        . 'FROM konsultasi '
-        . 'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id '
-        . 'WHERE konsultasi.pengguna_id = pengguna.id) AS jumlah ';
+    $karakter_query[] = '(SELECT COUNT(jawaban.karakter_id) '
+      . 'FROM konsultasi '
+      . 'INNER JOIN jawaban ON jawaban.id = konsultasi.jawaban_id '
+      . 'WHERE konsultasi.pengguna_id = pengguna.id) AS jumlah ';
 
     $karakter_str = implode(',', $karakter_query);
 
     $return = $this->db->query(
-        'SELECT pengguna.nama, ' . $karakter_str . ' ' .
+        'SELECT pengguna.nama, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
+        'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
+        'GROUP BY pengguna.nama, konsultasi.tanggal ' .
+        'ORDER BY konsultasi.tanggal ' .
         'LIMIT ' . $page . ',' . $limit
       )->result_array();
-    
+
     return $return;
   }
 
