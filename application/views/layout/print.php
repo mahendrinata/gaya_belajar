@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Hasil Konsultasi</title>
+    <?php echo link_tag('assets/favicon.png', 'shortcut icon', 'image/ico'); ?>
     <style type="text/css">
       a{
         display: none;
