@@ -14,7 +14,7 @@
   <section>
     <div class="hero-unit">
       <h1>Hasil Konsultasi</h1>
-      <p>Tanggal Konsultasi : <?php echo date('d F Y', strtotime($konsultasi['tanggal'])); ?></p>
+      <p>Tanggal Konsultasi : <?php echo date_indo($konsultasi['tanggal']); ?></p>
     </div>
   </section>
 
@@ -30,7 +30,7 @@
       </tr>
       <tr>
         <th>Tempat, Tanggal Lahir</th>
-        <td><?php echo $pengguna['tempat_lahir'] . ', ' . date('d F Y', strtotime($pengguna['tanggal_lahir'])); ?></td>
+        <td><?php echo $pengguna['tempat_lahir'] . ', ' . date_indo($pengguna['tanggal_lahir']); ?></td>
       </tr>
       <tr>
         <th>Alamat</th>

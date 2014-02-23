@@ -26,7 +26,7 @@ echo anchor('admin/konsultasi/print_laporan/' . $karakter['id'], 'Cetak Laporan 
       echo '<tr>';
       echo '<td>' . $offset . '</td>';
       echo '<td>' . $konsul['nama'] . '</td>';
-      echo '<td>' . $konsul['tempat_lahir'] . ', ' . date('d F Y', strtotime($konsul['tanggal_lahir'])) . '</td>';
+      echo '<td>' . $konsul['tempat_lahir'] . ', ' . date_indo($konsul['tanggal_lahir']) . '</td>';
       echo '<td>' . $konsul['jenis_kelamin'] . '</td>';
       echo '<td>' . $konsul['agama'] . '</td>';
       echo '<td>' . $konsul['alamat'] . '</td>';

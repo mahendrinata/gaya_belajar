@@ -103,4 +103,29 @@ if (!function_exists('jquery_alert')) {
   }
 
 }
+
+if (!function_exists('date_indo')) {
+
+  function date_indo($date = NULL) {
+    $d = date('j', strtotime($date));
+    $month = array(
+      'Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember');
+
+    $m = $month[(date('n', strtotime($date)) - 1)];
+    $y = date('Y', strtotime($date));
+    return $d . ' ' . $m . ' ' . $y;
+  }
+
+}
 ?>

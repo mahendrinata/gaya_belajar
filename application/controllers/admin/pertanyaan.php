@@ -82,7 +82,7 @@ class Pertanyaan extends Admin_Controller {
     $this->load->model('Konsultasi_model');
     $this->data['konsultasi'] = $this->Konsultasi_model->count_by(array('pengguna_id' => App_Controller::$USER['id']));
 
-    $this->data['pertanyaan'] = $this->Pertanyaan_model->with('jawaban')->get_all();
+    $this->data['pertanyaan'] = $this->Pertanyaan_model->get_pertanyaan_konsultasi();
     
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }

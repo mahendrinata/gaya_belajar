@@ -40,7 +40,7 @@ echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target=
       $offset++;
       echo '<tr>';
       echo '<td>' . $offset . '</td>';
-      echo '<td>' . date('d F Y', strtotime($konsul['tanggal'])) . '</td>';
+      echo '<td>' . date_indo($konsul['tanggal']) . '</td>';
       echo '<td>' . $konsul['nama'] . '</td>';
       echo '<td style="text-align: center;"><strong>' . implode(', ', $karakter_value) . '</strong></td>';
       foreach ($karakter as $k) {

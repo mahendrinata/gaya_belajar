@@ -5,7 +5,7 @@
 $data = array(
   array('label' => 'Username', 'value' => $pengguna['username']),
   array('label' => 'Nama Lengkap', 'value' => $pengguna['nama']),
-  array('label' => 'Tempat/Tanggal Lahir', 'value' => $pengguna['tempat_lahir'] . ', ' . date('d F Y', strtotime($pengguna['tanggal_lahir']))),
+  array('label' => 'Tempat/Tanggal Lahir', 'value' => $pengguna['tempat_lahir'] . ', ' . date_indo($pengguna['tanggal_lahir'])),
   array('label' => 'Jenis Kelamin', 'value' => $pengguna['jenis_kelamin']),
   array('label' => 'Alamat', 'value' => $pengguna['alamat']),
   array('label' => 'Agama', 'value' => $pengguna['agama']),
