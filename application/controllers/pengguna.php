@@ -43,6 +43,22 @@ class Pengguna extends App_Controller {
     redirect('login');
   }
 
+  public function register() {
+    if ($this->form_validation->run('pengguna/add')) {
+      $pengguna = App_Controller::$POST_DATA;
+      $pengguna['password'] = md5($pengguna['password']);
+      unset($pengguna['confirmation_password']);
+      $pengguna['level'] = Level::SISWA;
+      $add = $this->Pengguna_model->insert($pengguna);
+      $this->show_message('insert', $add);
+      redirect('login');
+    } else {
+      $this->data['title'] = 'Daftar menjadi member';
+      $this->data['layout'] = 'content/guest/pengguna/register';
+      $this->load->view(App_Controller::$LAYOUT, $this->data);
+    }
+  }
+
 }
 
 ?>

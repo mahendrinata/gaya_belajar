@@ -41,11 +41,12 @@ if (!defined('BASEPATH'))
   |
  */
 
-$route['default_controller'] = "admin/halaman";
+$route['default_controller'] = "pengguna/login";
 $route['404_override'] = '';
 
 $route['login'] = 'pengguna/login';
 $route['logout'] = 'pengguna/logout';
+$route['register'] = 'pengguna/register';
 
 
 

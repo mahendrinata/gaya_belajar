@@ -27,7 +27,9 @@
   </head>
   <body>
     <?php
-    $this->load->view('element/navigation/top_menu');
+    if (isset($user_login) && !empty($user_login)) {
+      $this->load->view('element/navigation/top_menu');
+    }
     $this->load->view('element/general/content')
     ?>
   </body>

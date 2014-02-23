@@ -54,7 +54,7 @@ class Konsultasi extends Admin_Controller {
     $this->load->model('Karakter_model');
     $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil(App_Controller::$USER);
     $this->data['karakter'] = (empty($this->data['konsultasi']['karakter'])) ? array() : $this->Karakter_model->with('anjuran')->get_many($this->data['konsultasi']['karakter']);
-    
+
     if ($template) {
       $this->load->view(App_Controller::$LAYOUT, $this->data);
     }

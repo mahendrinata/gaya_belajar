@@ -15,6 +15,7 @@
   <?php echo label_error('password', '<label class="label label-important">', '</label>'); ?>
   <?php echo form_password('password', set_value('password'), 'placeholder="Password" class="input-block-level"'); ?>
   <?php echo form_submit('login', 'Login', 'class="btn btn-large btn-primary"'); ?>
+  <?php echo anchor('register', 'Daftar', 'class="btn btn-large btn-success"');?>
   <?php echo form_close(); ?>
 
 </div>

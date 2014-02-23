@@ -30,7 +30,7 @@
         <?php echo $i . '. ' . $tanya['pertanyaan']; ?>
         <ul id="jawaban" style="list-style: none;">
           <?php foreach ($tanya['jawaban'] as $jawaban) { ?>
-            <li><input required="require" type="radio" name="<?php echo $tanya['id']; ?>" value="<?php echo $jawaban['id']; ?>"> <?php echo $jawaban['jawaban']; ?></li>
+          <li><label class="radio"><input required="require" type="radio" name="<?php echo $tanya['id']; ?>" value="<?php echo $jawaban['id']; ?>"> <?php echo $jawaban['jawaban']; ?></label></li>
           <?php } ?>
         </ul>
       </div>

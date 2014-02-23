@@ -12,7 +12,7 @@ class Pengguna extends Admin_Controller {
 
   public function index() {
     $this->check_access(array(Level::ADMIN));
-    
+
     $this->data['pengguna'] = $this->Pengguna_model->get_all_active(App_Controller::$PAGE);
 
     $this->pagination_create($this->data['pengguna']['count']);
@@ -89,12 +89,15 @@ class Pengguna extends Admin_Controller {
 
   public function change_password() {
     if ($this->form_validation->run('password')) {
-      $pengguna = App_Controller::$POST_DATA;
-      $pengguna['password'] = md5($pengguna['password']);
-      unset($pengguna['confirmation_password']);
-      $update = $this->Pengguna_model->update(App_Controller::$USER['id'], $pengguna);
-      $this->show_message('update', $update);
-      redirect('admin/halaman');
+      $pengguna = $this->Pengguna_model->get(App_Controller::$USER['id']);
+      if (md5(App_Controller::$POST_DATA['old_password']) == $pengguna['password']) {
+        $update = $this->Pengguna_model->update($pengguna['id'], array('password' => md5(App_Controller::$POST_DATA['password'])));
+        $this->show_message('update', $update);
+        redirect('admin/halaman');
+      } else {
+        $this->show_message('update', FALSE, 'Maaf, Password Lama anda salah.');
+        redirect('admin/pengguna/change_password');
+      }
     } else {
       $this->data['title'] = 'Ganti Password';
       $this->load->view(App_Controller::$LAYOUT, $this->data);

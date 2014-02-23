@@ -2,7 +2,7 @@
   <h1><?php echo $title; ?></h1>
 </div>
 <?php
-echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
+echo anchor('admin/konsultasi/print_index', 'Cetak Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
 ?>
 <table class="table table-bordered table-striped table-hover bg-white print-border">
   <thead>

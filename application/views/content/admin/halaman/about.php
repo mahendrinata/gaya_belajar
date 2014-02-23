@@ -16,7 +16,7 @@
     }
     ?>
     <?php
-    echo anchor('admin/pertanyaan/konsultas', 'Konsultasi', 'class="btn btn-primary btn-large"');
+    echo anchor('admin/pertanyaan/konsultasi', 'Konsultasi', 'class="btn btn-primary btn-large"');
     ?>
   </div>
 </section>

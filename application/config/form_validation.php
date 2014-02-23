@@ -44,6 +44,11 @@ $config = array(
   ),
   'password' => array(
     array(
+      'field' => 'old_password',
+      'label' => 'Password Sekarang',
+      'rules' => 'required|min_length[5]'
+    ),
+    array(
       'field' => 'password',
       'label' => 'Password',
       'rules' => 'required|min_length[5]'
