@@ -3,9 +3,7 @@
 </div>
 <?php
 echo form_open('admin/pengguna/edit_account/', array('class' => 'form-horizontal'));
-if ($pengguna['level'] != Level::ADMIN) {
-  echo bootstrap_form_input('username', $pengguna['username'], array('class' => 'span6', 'placeholder' => 'Username', 'label' => 'Username' . bootstrap_text_important()));
-}
+echo bootstrap_form_input('username', $pengguna['username'], array('class' => 'span6', 'placeholder' => 'Username', 'label' => 'Username' . bootstrap_text_important()));
 echo bootstrap_form_input('nama', $pengguna['nama'], array('class' => 'span6', 'placeholder' => 'Nama', 'label' => 'Nama' . bootstrap_text_important()));
 echo bootstrap_form_input('tempat_lahir', $pengguna['tempat_lahir'], array('class' => 'span6', 'placeholder' => 'Tempat Lahir', 'label' => 'Tempat Lahir'));
 echo bootstrap_form_input('tanggal_lahir', $pengguna['tanggal_lahir'], array('readonly' => 'readonly', 'class' => 'datepicker span2', 'placeholder' => 'Tempat Lahir', 'label' => 'Tanggal Lahir'));
