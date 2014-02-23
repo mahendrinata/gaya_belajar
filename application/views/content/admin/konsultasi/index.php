@@ -30,9 +30,10 @@ echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target=
       foreach ($karakter as $k) {
         $max[] = $konsul[url_title($k['nama_karakter'], '_', TRUE)];
       }
+      $for_max = max($max);
       $karakter_value = array();
       foreach ($karakter as $k) {
-        if ($konsul[url_title($k['nama_karakter'], '_', TRUE)] >= max($max)) {
+        if ($konsul[url_title($k['nama_karakter'], '_', TRUE)] >= $for_max) {
           $karakter_value[] = $k['nama_karakter'];
         }
       }

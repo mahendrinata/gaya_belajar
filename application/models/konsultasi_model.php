@@ -57,9 +57,11 @@ class Konsultasi_model extends App_Model {
     foreach ($data as $konsul) {
       $max[] = $konsul['jumlah'];
     }
+    
+    $for_max = max($max);
     foreach ($data as $konsul) {
       $konsultasi['data'][$konsul['id']] = $konsul;
-      if ($konsul['jumlah'] >= max($max)) {
+      if ($konsul['jumlah'] >= $for_max) {
         $max = $konsul['jumlah'];
         $konsultasi['karakter'][] = $konsul['id'];
       }
