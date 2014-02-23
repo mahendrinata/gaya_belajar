@@ -53,14 +53,28 @@
 
   <div class="well text-center">
     <h3>Gaya Belajar Anda Adalah:</h3>
-    <h2><?php echo $karakter['nama_karakter']; ?></h2>
+    <h2>
+      <?php
+      $kar = array();
+      foreach ($karakter as $k) {
+        $kar[] = $k['nama_karakter'];
+      }
+      echo implode(', ', $kar);
+      ?>
+    </h2>
   </div>
 
   <div class="well text-center">
     <h3>Anjuran</h3>
-      <?php foreach ($karakter['anjuran'] as $anjuran) { ?>
-        <p><?php echo $anjuran['anjuran']; ?></p>
-      <?php } ?>
+    <?php
+    foreach ($karakter as $k) {
+      echo '<hr>';
+      echo '<h4>' . $k['nama_karakter'] . '</h4>';
+      foreach ($k['anjuran'] as $anjuran) {
+        echo '<p>' . $anjuran['anjuran'] . '</p>';
+      }
+    }
+    ?>
   </div>
 
   <div class="well text-center">

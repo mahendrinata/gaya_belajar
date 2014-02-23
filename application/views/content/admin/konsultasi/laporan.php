@@ -23,6 +23,7 @@ echo anchor('admin/konsultasi/print_laporan/' . $karakter['id'], 'Cetak Laporan 
     $offset = 0;
     foreach ($konsultasi as $konsul) {
       $offset++;
+      echo '<tr>';
       echo '<td>' . $offset . '</td>';
       echo '<td>' . $konsul['nama'] . '</td>';
       echo '<td>' . $konsul['tempat_lahir'] . ', ' . date('d F Y', strtotime($konsul['tanggal_lahir'])) . '</td>';
@@ -32,6 +33,7 @@ echo anchor('admin/konsultasi/print_laporan/' . $karakter['id'], 'Cetak Laporan 
       echo '<td>' . $konsul['asal_sekolah'] . '</td>';
       echo '<td>' . $konsul['kelas'] . '</td>';
       echo '<td>' . $karakter['nama_karakter'] . '</td>';
+      echo '</tr>';
     }
     ?>
   </tbody>

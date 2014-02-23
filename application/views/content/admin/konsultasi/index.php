@@ -11,7 +11,7 @@ echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target=
       <th rowspan="2" style="text-align: center;vertical-align: middle">Tanggal Konsultasi</th>
       <th rowspan="2" style="text-align: center;vertical-align: middle">Nama</th>
       <th rowspan="2" style="text-align: center;vertical-align: middle">Gaya Belajar</th>
-      <th colspan="<?php echo count($karakter); ?>" style="text-align: center;vertical-align: middle">Presentase kecenderungan gaya belajar</th>
+      <th colspan="<?php echo count($karakter); ?>" style="text-align: center;vertical-align: middle">Presentase Kecenderungan Gaya Belajar</th>
       <th rowspan="2" style="text-align: center;vertical-align: middle">Jumlah</th>
     </tr>
     <tr>
@@ -26,15 +26,22 @@ echo anchor('admin/konsultasi/print_index', 'Cetal Riwayat Konsultasi', 'target=
     <?php
     $offset = (empty($offset)) ? 0 : $offset;
     foreach ($konsultasi as $konsul) {
+      $max = array();
       foreach ($karakter as $k) {
-        $karakter_value[$k['nama_karakter']] = $konsul[url_title($k['nama_karakter'], '_', TRUE)];
+        $max[] = $konsul[url_title($k['nama_karakter'], '_', TRUE)];
+      }
+      $karakter_value = array();
+      foreach ($karakter as $k) {
+        if ($konsul[url_title($k['nama_karakter'], '_', TRUE)] >= max($max)) {
+          $karakter_value[] = $k['nama_karakter'];
+        }
       }
       $offset++;
       echo '<tr>';
       echo '<td>' . $offset . '</td>';
       echo '<td>' . date('d F Y', strtotime($konsul['tanggal'])) . '</td>';
       echo '<td>' . $konsul['nama'] . '</td>';
-      echo '<td style="text-align: center;"><strong>' . array_search(max($karakter_value), $karakter_value) . '</strong></td>';
+      echo '<td style="text-align: center;"><strong>' . implode(', ', $karakter_value) . '</strong></td>';
       foreach ($karakter as $k) {
         $count = $konsul[url_title($k['nama_karakter'], '_', TRUE)];
         echo '<td style="text-align: right;">' . round($count * 100 / $konsul['jumlah']) . '%</td>';
