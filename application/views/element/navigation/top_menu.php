@@ -40,7 +40,7 @@
             <li><?php echo anchor('admin/pengguna', '<i class="icon-user"></i> Pengguna'); ?></li>
             <?php
           }
-          if ($user_login['level'] == Level::SISWA) {
+          if ($user_login['level'] == Level::SISWA && $user_login['Level'] == Level::ADMIN) {
             ?>
             <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file icon-white"></i> Konsultasi'); ?></li>
             <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt icon-white"></i> Hasil Konsultasi'); ?></li>

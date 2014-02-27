@@ -12,10 +12,12 @@ class Pengguna extends Admin_Controller {
 
   public function index() {
     $this->check_access(array(Level::ADMIN));
+    
+    $get = $this->input->get();
 
-    $this->data['pengguna'] = $this->Pengguna_model->get_all_active(App_Controller::$PAGE);
+    $this->data['pengguna'] = $this->Pengguna_model->get_all_active($get, App_Controller::$PAGE);
 
-    $this->pagination_create($this->data['pengguna']['count']);
+    $this->pagination_create($this->data['pengguna']['count'], $this->get_suffix_params());
 
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }
