@@ -29,30 +29,32 @@
                       if (isset($menu_karakter[$i + 1])) {
                         echo '<li>' . anchor('admin/konsultasi/laporan/' . implode('-', array($menu_karakter[$i]['id'], $menu_karakter[$i + 1]['id'])), '<i class="icon-align-center"></i> Laporan ' . ucwords(implode(' - ', array($menu_karakter[$i]['nama_karakter'], $menu_karakter[$i + 1]['nama_karakter'])))) . '</li>';
                       }
-                      if($i == (count($menu_karakter) - 1)){
+                      if ($i == (count($menu_karakter) - 1)) {
                         echo '<li>' . anchor('admin/konsultasi/laporan/' . implode('-', array($menu_karakter[0]['id'], $menu_karakter[$i]['id'])), '<i class="icon-align-center"></i> Laporan ' . ucwords(implode(' - ', array($menu_karakter[0]['nama_karakter'], $menu_karakter[$i]['nama_karakter'])))) . '</li>';
                       }
                     }
                     ?>
                   </ul>
                 </li>
-                <li class="divider"></li>
-                <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file"></i> Konsultasi'); ?></li>
-                <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt"></i> Hasil Konsultasi'); ?></li>
+               <?php if ($user_login['level'] == Level::ADMIN) { ?>
+                  <li class="divider"></li>
+                  <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file"></i> Konsultasi'); ?></li>
+                  <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt"></i> Hasil Konsultasi'); ?></li>
+               <?php } ?>
               </ul>
             </li>
-            <?php
-          }
-          if ($user_login['level'] == Level::ADMIN) {
-            ?>
+              <?php
+            }
+            if ($user_login['level'] == Level::ADMIN) {
+              ?>
             <li><?php echo anchor('admin/pengguna', '<i class="icon-user"></i> Pengguna'); ?></li>
             <?php
           }
-          if ($user_login['level'] == Level::SISWA && $user_login['Level'] == Level::ADMIN) {
+          if ($user_login['level'] == Level::SISWA) {
             ?>
             <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file icon-white"></i> Konsultasi'); ?></li>
             <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt icon-white"></i> Hasil Konsultasi'); ?></li>
-          <?php } ?>
+<?php } ?>
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
           <li>

@@ -49,6 +49,8 @@ class Konsultasi extends Admin_Controller {
   }
 
   public function hasil($template = TRUE) {
+    $this->check_access(array(Level::ADMIN, Level::SISWA));
+    
     $this->load->model('Pengguna_model');
     $this->data['pengguna'] = $this->Pengguna_model->get(App_Controller::$USER['id']);
     $this->load->model('Karakter_model');
