@@ -86,22 +86,39 @@ class Konsultasi_model extends App_Model {
     return $this->insert_many($save);
   }
 
-  public function get_laporan($active_karakter = array()) {
+  public function get_laporan($ids = array(), $active_karakter = array()) {
     $konsultasi = $this->get_all_konsultasi(NULL, NULL);
-    $karakter = $this->Karakter_model->get_many_by(array('id !=' => $active_karakter['id']));
-    $return = array();
-    foreach ($konsultasi as $konsul) {
-      $data = TRUE;
-      foreach ($karakter as $k) {
-        if ($konsul[url_title($active_karakter['nama_karakter'], '_', TRUE)] < $konsul[url_title($k['nama_karakter'], '_', TRUE)]) {
-          $data = FALSE;
-        }
-      }
-      if ($data) {
-        $return[] = $konsul;
+    $d_karakter = $karakter = $this->Karakter_model->get_all();
+    for ($i = 0; $i < count($karakter); $i++) {
+      if (in_array($karakter[$i]['id'], $ids)) {
+        unset($karakter[$i]);
       }
     }
-
+    $return = array();
+    foreach ($konsultasi as $konsul) {
+      $data = array();
+      $max_k = array();
+      foreach ($d_karakter as $d_k){
+        $max_k[] = $konsul[url_title($d_k['nama_karakter'], '_', TRUE)];
+      }
+      $max = max($max_k);
+      foreach ($karakter as $k) {
+        foreach ($active_karakter as $a_k) {
+          if ($konsul[url_title($a_k['nama_karakter'], '_', TRUE)] == $max && $konsul[url_title($a_k['nama_karakter'], '_', TRUE)] > $konsul[url_title($k['nama_karakter'], '_', TRUE)]) {
+            $data[] = TRUE;
+          }
+        }
+      }
+      if (count($ids) == 1) {
+        if (count($data) == count($karakter)) {
+          $return[] = $konsul;
+        }
+      } else {
+        if (count($data) == count($active_karakter)) {
+          $return[] = $konsul;
+        }
+      }
+    }
     return $return;
   }
 

@@ -2,7 +2,7 @@
   <h1><?php echo $title; ?></h1>
 </div>
 <?php
-echo anchor('admin/konsultasi/print_laporan/' . $karakter['id'], 'Cetak Laporan ' . $karakter['nama_karakter'], 'target="_blank" class="btn  btn-primary btn-add"');
+echo anchor('admin/konsultasi/print_laporan/' . implode('-', $id), 'Cetak Laporan ' . implode(' - ', $nama), 'target="_blank" class="btn  btn-primary btn-add"');
 ?>
 <table class="table table-bordered table-striped table-hover bg-white print-border">
   <thead>
@@ -32,7 +32,7 @@ echo anchor('admin/konsultasi/print_laporan/' . $karakter['id'], 'Cetak Laporan 
       echo '<td>' . $konsul['alamat'] . '</td>';
       echo '<td>' . $konsul['asal_sekolah'] . '</td>';
       echo '<td>' . $konsul['kelas'] . '</td>';
-      echo '<td>' . $karakter['nama_karakter'] . '</td>';
+      echo '<td>' . implode(' - ', $nama) . '</td>';
       echo '</tr>';
     }
     ?>

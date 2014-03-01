@@ -75,11 +75,18 @@ class Konsultasi extends Admin_Controller {
 
   public function laporan($id = NULL, $template = TRUE) {
     $this->load->model('Karakter_model');
-    $this->data['karakter'] = $karakter = $this->Karakter_model->get($id);
+    $ids = explode('-', $id);
+    $this->data['karakter'] = $karakter = $this->Karakter_model->get_many($ids);
 
-    $this->data['title'] = 'Daftar siswa dengan gaya belajar ' . $karakter['nama_karakter'];
+    $nama = array();
+    foreach ($karakter as $k) {
+      $this->data['id'][] = $k['id'];
+      $this->data['nama'][] = $nama[] = $k['nama_karakter'];
+    }
 
-    $this->data['konsultasi'] = $this->Konsultasi_model->get_laporan($karakter);
+    $this->data['title'] = 'Daftar siswa dengan gaya belajar ' . implode(" - ", $nama);
+
+    $this->data['konsultasi'] = $this->Konsultasi_model->get_laporan($ids, $karakter);
 
     if ($template) {
       $this->load->view(App_Controller::$LAYOUT, $this->data);
