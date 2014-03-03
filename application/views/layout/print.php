@@ -10,7 +10,6 @@
       }
       .content-print{
         border: 3px dashed #000000;
-        max-width: 750px;
         padding: 10px;
         text-align: center;
         margin: 10px auto;

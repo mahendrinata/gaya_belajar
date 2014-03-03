@@ -12,10 +12,12 @@ class Anjuran extends Admin_Controller {
 
   public function index() {
     $this->check_access(array(Level::ADMIN, Level::PAKAR));
+    
+    $get = $this->input->get();
 
-    $this->data['anjuran'] = $this->Anjuran_model->get_all_anjuran(App_Controller::$PAGE);
+    $this->data['anjuran'] = $this->Anjuran_model->get_all_anjuran($get, App_Controller::$PAGE);
 
-    $this->pagination_create($this->data['anjuran']['count']);
+    $this->pagination_create($this->data['anjuran']['count'], $this->get_suffix_params());
 
     $this->load->view(App_Controller::$LAYOUT, $this->data);
   }

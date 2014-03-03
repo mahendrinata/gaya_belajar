@@ -7,7 +7,7 @@ class Konsultasi_model extends App_Model {
 
   public $_table = "konsultasi";
 
-  public function get_all_konsultasi($page = NULL, $limit = 10) {
+  public function get_all_konsultasi($page = NULL, $limit = 10, $default_order = TRUE) {
     $page = (empty($page)) ? 0 : $page;
 
     $this->load->model('Karakter_model');
@@ -29,13 +29,19 @@ class Konsultasi_model extends App_Model {
     if (!empty($limit)) {
       $limit = 'LIMIT ' . $page . ',' . $limit;
     }
+    
+    if($default_order){
+      $order = 'konsultasi.tanggal DESC';
+    }else{
+      $order = 'pengguna.kelas ASC';
+    }
 
     $return = $this->db->query(
         'SELECT pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
         'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
         'GROUP BY pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal ' .
-        'ORDER BY konsultasi.tanggal ' . $limit
+        'ORDER BY '.$order.' ' . $limit
       )->result_array();
 
     return $return;
@@ -87,7 +93,7 @@ class Konsultasi_model extends App_Model {
   }
 
   public function get_laporan($ids = array(), $active_karakter = array()) {
-    $konsultasi = $this->get_all_konsultasi(NULL, NULL);
+    $konsultasi = $this->get_all_konsultasi(NULL, NULL, FALSE);
     $d_karakter = $karakter = $this->Karakter_model->get_all();
     for ($i = 0; $i < count($karakter); $i++) {
       if (in_array($karakter[$i]['id'], $ids)) {
