@@ -5,8 +5,8 @@
     <title>Hasil Konsultasi</title>
     <?php echo link_tag('assets/favicon.png', 'shortcut icon', 'image/ico'); ?>
     <style type="text/css">
-      a{
-        display: none;
+      a, form, .print-hidden{
+        display: none !important;
       }
       .content-print{
         border: 3px dashed #000000;
@@ -34,6 +34,9 @@
       .print-border, .print-border th, .print-border td{
         border: 1px solid #000;
         border-collapse: collapse;
+      }
+      table{
+        margin-bottom: 20px;
       }
     </style>
     <?php echo css(array('font-awesome.min')); ?>

@@ -2,7 +2,14 @@
   <h1><?php echo $title; ?></h1>
 </div>
 <?php
-echo anchor('admin/konsultasi/print_index', 'Cetak Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
+echo anchor('admin/konsultasi/print_index' . $suffix, 'Cetak Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
+echo form_open('admin/konsultasi/index', 'style="display:inline" method="get" class="form-inline pull-right"');
+?>
+<!--<input name="nama" class="span3" type="text" placeholder="Cari Berdasarkan Gaya Belajar">-->
+<input name="tanggal" class="span2 datepicker" type="text" placeholder="Tanggal">
+<button class="btn btn-primary" type="submit"><i class="icon-search icon-white"></i> Cari</button>
+<?php
+echo form_close();
 ?>
 <table class="table table-bordered table-striped table-hover bg-white print-border">
   <thead>
@@ -13,6 +20,7 @@ echo anchor('admin/konsultasi/print_index', 'Cetak Riwayat Konsultasi', 'target=
       <th rowspan="2" style="text-align: center;vertical-align: middle">Gaya Belajar</th>
       <th colspan="<?php echo count($karakter); ?>" style="text-align: center;vertical-align: middle">Presentase Kecenderungan Gaya Belajar</th>
       <th rowspan="2" style="text-align: center;vertical-align: middle">Jumlah</th>
+      <th rowspan="2" style="text-align: center;vertical-align: middle" class="print-hidden">Aksi</th>
     </tr>
     <tr>
       <?php
@@ -48,6 +56,10 @@ echo anchor('admin/konsultasi/print_index', 'Cetak Riwayat Konsultasi', 'target=
         echo '<td style="text-align: right;">' . round($count * 100 / $konsul['jumlah']) . '%</td>';
       }
       echo '<td style="text-align: right;">' . round($konsul['jumlah'] * 100 / $konsul['jumlah']) . '%</td>';
+      $actions = array(
+        'view' => array('name' => 'Detail', 'action' => 'hasil/' . $konsul['id']),
+      );
+      echo '<td class="print-hidden">' . anchor('admin/konsultasi/hasil/'.$konsul['id'] , 'Detail', 'class="btn  btn-primary btn-add"') . '</td>';
       echo '</tr>';
     }
     ?>

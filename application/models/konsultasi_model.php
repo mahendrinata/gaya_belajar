@@ -7,7 +7,7 @@ class Konsultasi_model extends App_Model {
 
   public $_table = "konsultasi";
 
-  public function get_all_konsultasi($page = NULL, $limit = 10, $default_order = TRUE) {
+  public function get_all_konsultasi($get = array(), $page = NULL, $limit = 10, $default_order = TRUE) {
     $page = (empty($page)) ? 0 : $page;
 
     $this->load->model('Karakter_model');
@@ -29,19 +29,33 @@ class Konsultasi_model extends App_Model {
     if (!empty($limit)) {
       $limit = 'LIMIT ' . $page . ',' . $limit;
     }
-    
-    if($default_order){
+
+    $where = '';
+    if (!empty($get['tanggal']) || !empty($get['nama'])) {
+      $where = 'WHERE ';
+    }
+
+    if (!empty($get['tanggal'])) {
+      $where .= 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
+    }
+
+    if (!empty($get['nama'])) {
+      
+    }
+
+    if ($default_order) {
       $order = 'konsultasi.tanggal DESC';
-    }else{
+    } else {
       $order = 'pengguna.kelas ASC';
     }
 
     $return = $this->db->query(
-        'SELECT pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
+        'SELECT pengguna.id, pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
         'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
-        'GROUP BY pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal ' .
-        'ORDER BY '.$order.' ' . $limit
+        $where . ' ' .
+        'GROUP BY pengguna.id, pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal ' .
+        'ORDER BY ' . $order . ' ' . $limit
       )->result_array();
 
     return $return;
@@ -104,7 +118,7 @@ class Konsultasi_model extends App_Model {
     foreach ($konsultasi as $konsul) {
       $data = array();
       $max_k = array();
-      foreach ($d_karakter as $d_k){
+      foreach ($d_karakter as $d_k) {
         $max_k[] = $konsul[url_title($d_k['nama_karakter'], '_', TRUE)];
       }
       $max = max($max_k);

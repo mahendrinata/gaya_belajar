@@ -86,9 +86,13 @@
 
   <div class="well text-center">
     <?php
-    echo anchor('admin/konsultasi/reset', 'Ulangi', 'class="btn btn-primary btn-large"');
+    if (empty($user_id)) {
+      echo anchor('admin/konsultasi/reset', 'Ulangi', 'class="btn btn-primary btn-large"');
+    } else {
+      echo anchor('admin/konsultasi/index', 'Kembali', 'class="btn btn-warning btn-large"');
+    }
     echo '&nbsp;';
-    echo anchor('admin/konsultasi/print_hasil', 'Cetak', 'class="btn btn-primary btn-large" target="_blank"');
+    echo anchor('admin/konsultasi/print_hasil/' . $user_id, 'Cetak', 'class="btn btn-primary btn-large" target="_blank"');
     ?>
   </div>
 <?php } ?>

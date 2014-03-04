@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/content/admin/konsultasi/laporan.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/views/element/navigation/top_menu.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/controllers/admin/konsultasi.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/controllers/admin/pertanyaan.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/core/Behavior_Model.php</file>
+            <file>file:/C:/xampp/htdocs/gaya_belajar/application/models/konsultasi_model.php</file>
+        </group>
     </open-files>
 </project-private>
