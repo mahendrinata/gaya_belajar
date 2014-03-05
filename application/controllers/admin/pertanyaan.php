@@ -78,7 +78,7 @@ class Pertanyaan extends Admin_Controller {
   }
 
   public function konsultasi() {
-    $this->check_access(array(Level::ADMIN, Level::SISWA));
+    $this->check_access(array(Level::SISWA));
     
     $this->data['title'] = 'Konsultasi';
     $this->load->model('Konsultasi_model');

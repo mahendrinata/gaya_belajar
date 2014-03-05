@@ -57,19 +57,18 @@ class Konsultasi extends Admin_Controller {
   }
 
   public function hasil($user_id = NULL, $template = TRUE) {
-    $this->check_access(array(Level::ADMIN, Level::SISWA));
-
     $this->load->model('Pengguna_model');
+    $this->load->model('Karakter_model');
     if (empty($user_id)) {
       $this->data['pengguna'] = $this->Pengguna_model->get(App_Controller::$USER['id']);
+    $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil(App_Controller::$USER);
     } else {
       $this->data['pengguna'] = $this->Pengguna_model->get($user_id);
+      $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil($this->data['pengguna']);
     }
 
     $this->data['user_id'] = $user_id;
 
-    $this->load->model('Karakter_model');
-    $this->data['konsultasi'] = $this->Konsultasi_model->get_hasil(App_Controller::$USER);
     $this->data['karakter'] = (empty($this->data['konsultasi']['karakter'])) ? array() : $this->Karakter_model->with('anjuran')->get_many($this->data['konsultasi']['karakter']);
 
     if ($template) {

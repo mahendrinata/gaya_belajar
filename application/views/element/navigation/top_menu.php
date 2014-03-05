@@ -36,11 +36,6 @@
                     ?>
                   </ul>
                 </li>
-               <?php if ($user_login['level'] == Level::ADMIN) { ?>
-                  <li class="divider"></li>
-                  <li><?php echo anchor('admin/pertanyaan/konsultasi', '<i class="icon-file"></i> Konsultasi'); ?></li>
-                  <li><?php echo anchor('admin/konsultasi/hasil', '<i class="icon-list-alt"></i> Hasil Konsultasi'); ?></li>
-               <?php } ?>
               </ul>
             </li>
               <?php
