@@ -41,7 +41,7 @@ class Konsultasi_model extends App_Model {
     }
     
     $where_string = '';
-    if (!empty($get['tanggal']) || !empty($get['nama'])) {
+    if (!empty($where)) {
       $where_string = 'WHERE '.  implode(' AND ', $where);
     }
 
@@ -64,16 +64,16 @@ class Konsultasi_model extends App_Model {
   }
   
   public function count_konsultasi($get = array()){
-    if (!empty($get['tanggal'])) {
+    if (isset($get['tanggal']) && !empty($get['tanggal'])) {
       $where[] = 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
     }
 
-    if (!empty($get['nama'])) {
+    if (isset($get['nama']) && !empty($get['nama'])) {
       $where[] = 'pengguna.nama LIKE "%' . $get['nama'] . '%"';
     }
     
     $where_string = '';
-    if (!empty($get['tanggal']) || !empty($get['nama'])) {
+    if (!empty($$where)) {
       $where_string = 'WHERE '.  implode(' AND ', $where);
     }
     $return = $this->db->query('
