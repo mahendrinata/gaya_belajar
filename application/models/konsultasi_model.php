@@ -32,11 +32,11 @@ class Konsultasi_model extends App_Model {
 
     $where = array();
 
-    if (!empty($get['tanggal'])) {
+    if (isset($get['tanggal']) && !empty($get['tanggal'])) {
       $where[] = 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
     }
 
-    if (!empty($get['nama'])) {
+    if (isset($get['nama']) && !empty($get['nama'])) {
       $where[] = 'pengguna.nama LIKE "%' . $get['nama'] . '%"';
     }
     
@@ -48,7 +48,7 @@ class Konsultasi_model extends App_Model {
     if ($default_order) {
       $order = 'konsultasi.tanggal DESC';
     } else {
-      $order = 'pengguna.kelas ASC';
+      $order = 'pengguna.kelas, pengguna.nama ASC';
     }
 
     $return = $this->db->query(
@@ -130,7 +130,7 @@ class Konsultasi_model extends App_Model {
   }
 
   public function get_laporan($ids = array(), $active_karakter = array()) {
-    $konsultasi = $this->get_all_konsultasi(NULL, NULL, FALSE);
+    $konsultasi = $this->get_all_konsultasi(array(), NULL, NULL, FALSE);
     $d_karakter = $karakter = $this->Karakter_model->get_all();
     for ($i = 0; $i < count($karakter); $i++) {
       if (in_array($karakter[$i]['id'], $ids)) {

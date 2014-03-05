@@ -247,13 +247,13 @@ $config['encryption_key'] = '22608126a04da6c7f4cf740a97bb948a';
   | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
   |
  */
-$config['sess_cookie_name'] = 'sipsiko';
+$config['sess_cookie_name'] = 'modalitas';
 $config['sess_expiration'] = 7200;
-$config['sess_expire_on_close'] = TRUE;
-$config['sess_encrypt_cookie'] = TRUE;
-$config['sess_use_database'] = TRUE;
+$config['sess_expire_on_close'] = FALSE;
+$config['sess_encrypt_cookie'] = FALSE;
+$config['sess_use_database'] = FALSE;
 $config['sess_table_name'] = 'sessions';
-$config['sess_match_ip'] = TRUE;
+$config['sess_match_ip'] = FALSE;
 $config['sess_match_useragent'] = TRUE;
 $config['sess_time_to_update'] = 300;
 
