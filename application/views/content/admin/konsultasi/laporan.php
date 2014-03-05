@@ -24,11 +24,13 @@ foreach ($konsultasi as $konsul) {
       </thead>
       <tbody>
         <?php
+      $kelas = $konsul['kelas'];
+      $no = 1;
       }
 
       $offset++;
       echo '<tr>';
-      echo '<td>' . $offset . '</td>';
+      echo '<td>' . $no . '</td>';
       echo '<td>' . $konsul['nama'] . '</td>';
       echo '<td>' . $konsul['tempat_lahir'] . ', ' . date_indo($konsul['tanggal_lahir']) . '</td>';
       echo '<td>' . $konsul['jenis_kelamin'] . '</td>';
@@ -38,12 +40,12 @@ foreach ($konsultasi as $konsul) {
       echo '<td>' . $konsul['kelas'] . '</td>';
       echo '<td>' . implode(' - ', $nama) . '</td>';
       echo '</tr>';
+      $no++;
       if (($kelas != $konsul['kelas'] && $offset > 1) || $offset == (count($konsultasi) + 1)) {
         ?>
       </tbody>
     </table>
     <?php
   }
-  $kelas = $konsul['kelas'];
 }
 ?>
