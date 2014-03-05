@@ -44,7 +44,7 @@ class Konsultasi_model extends App_Model {
     if (!empty($where)) {
       $where_string = 'WHERE '.  implode(' AND ', $where);
     }
-
+    
     if ($default_order) {
       $order = 'konsultasi.tanggal DESC';
     } else {
@@ -73,7 +73,7 @@ class Konsultasi_model extends App_Model {
     }
     
     $where_string = '';
-    if (!empty($$where)) {
+    if (!empty($where)) {
       $where_string = 'WHERE '.  implode(' AND ', $where);
     }
     $return = $this->db->query('
