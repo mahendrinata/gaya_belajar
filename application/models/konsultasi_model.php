@@ -30,17 +30,19 @@ class Konsultasi_model extends App_Model {
       $limit = 'LIMIT ' . $page . ',' . $limit;
     }
 
-    $where = '';
-    if (!empty($get['tanggal']) || !empty($get['nama'])) {
-      $where = 'WHERE ';
-    }
+    $where = array();
 
     if (!empty($get['tanggal'])) {
-      $where .= 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
+      $where[] = 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
     }
 
     if (!empty($get['nama'])) {
-      
+      $where[] = 'pengguna.nama LIKE "%' . $get['nama'] . '%"';
+    }
+    
+    $where_string = '';
+    if (!empty($get['tanggal']) || !empty($get['nama'])) {
+      $where_string = 'WHERE '.  implode(' AND ', $where);
     }
 
     if ($default_order) {
@@ -50,15 +52,36 @@ class Konsultasi_model extends App_Model {
     }
 
     $return = $this->db->query(
-        'SELECT pengguna.id, pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
+        'SELECT DISTINCT pengguna.id, pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal, ' . $karakter_str . ' ' .
         'FROM pengguna ' .
         'INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id ' .
-        $where . ' ' .
+        $where_string . ' ' .
         'GROUP BY pengguna.id, pengguna.nama, pengguna.tempat_lahir, pengguna.tanggal_lahir, pengguna.jenis_kelamin, pengguna.alamat, pengguna.agama, pengguna.kelas, pengguna.asal_sekolah, konsultasi.tanggal ' .
         'ORDER BY ' . $order . ' ' . $limit
       )->result_array();
 
     return $return;
+  }
+  
+  public function count_konsultasi($get = array()){
+    if (!empty($get['tanggal'])) {
+      $where[] = 'konsultasi.tanggal = "' . $get['tanggal'] . '"';
+    }
+
+    if (!empty($get['nama'])) {
+      $where[] = 'pengguna.nama LIKE "%' . $get['nama'] . '%"';
+    }
+    
+    $where_string = '';
+    if (!empty($get['tanggal']) || !empty($get['nama'])) {
+      $where_string = 'WHERE '.  implode(' AND ', $where);
+    }
+    $return = $this->db->query('
+      SELECT COUNT(DISTINCT pengguna.id) AS count
+      FROM pengguna
+      INNER JOIN konsultasi ON konsultasi.pengguna_id = pengguna.id 
+      '.$where_string)->row_array();
+    return $return['count'];
   }
 
   public function get_hasil($pengguna = array()) {

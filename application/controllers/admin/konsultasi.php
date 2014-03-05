@@ -19,7 +19,7 @@ class Konsultasi extends Admin_Controller {
     $this->data['konsultasi'] = $this->Konsultasi_model->get_all_konsultasi($get, App_Controller::$PAGE);
 
     $this->load->model('Pengguna_model');
-    $count = $this->Pengguna_model->count_all();
+    $count = $this->Konsultasi_model->count_konsultasi($get);
     $this->pagination_create($count, $this->get_suffix_params());
 
     $this->data['suffix'] = $this->get_suffix_params();

@@ -5,7 +5,7 @@
 echo anchor('admin/konsultasi/print_index' . $suffix, 'Cetak Riwayat Konsultasi', 'target="_blank" class="btn  btn-primary btn-add"');
 echo form_open('admin/konsultasi/index', 'style="display:inline" method="get" class="form-inline pull-right"');
 ?>
-<!--<input name="nama" class="span3" type="text" placeholder="Cari Berdasarkan Gaya Belajar">-->
+<input name="nama" class="span3" type="text" placeholder="Cari Berdasarkan Nama">
 <input name="tanggal" class="span2 datepicker" type="text" placeholder="Tanggal">
 <button class="btn btn-primary" type="submit"><i class="icon-search icon-white"></i> Cari</button>
 <?php
