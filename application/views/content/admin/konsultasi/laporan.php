@@ -4,7 +4,7 @@
 <?php
 echo anchor('admin/konsultasi/print_laporan/' . implode('-', $id), 'Cetak Laporan ' . implode(' - ', $nama), 'target="_blank" class="btn  btn-primary btn-add"');
 $offset = 0;
-$kelas = NULL;
+$kelas = '.';
 foreach ($konsultasi as $konsul) {
   if ($kelas != $konsul['kelas'] || $offset == 0) {
     ?>
