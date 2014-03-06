@@ -9,7 +9,7 @@
         display: none !important;
       }
       .content-print{
-        border: 3px dashed #000000;
+        /*border: 3px dashed #000000;*/
         padding: 10px;
         text-align: center;
         margin: 10px auto;
@@ -37,11 +37,43 @@
       }
       table{
         margin-bottom: 20px;
+        width: 100%;
+      }
+      .header-print{
+        width: 100%;
+        border-bottom: #000 double 6px;
+        margin: 10px;
+        margin-bottom: 20px;
+      }
+      .logo{
+        width: 20%;
+        float: left;
+      }
+      .head-content{
+        float: left;
+        width: 80%;
+        text-align: center;
+      }
+      .logo img{
+        float: left;
+        height: 125px;
       }
     </style>
     <?php echo css(array('font-awesome.min')); ?>
   </head>
   <body onload="window.print()">
+    <div class="header-print">
+      <div class="logo">
+        <?php echo img('assets/img/genpi-logo.jpg');?>
+        <div style="clear: both"></div>
+      </div>
+      <div class="head-content">
+        <h2>LEMBAGA BIMBINGAN BELAJAR</h2>
+        <h2>GENPI EDUCATION MERAUKE</h2>
+        <p>Pendidikan No. 3 Merauke - Hp: 085796157812</p>
+      </div>
+      <div style="clear: both"></div>
+    </div>
     <div class="content-print">
       <?php $this->load->view('element/general/content'); ?>
     </div>
